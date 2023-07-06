@@ -1,4 +1,9 @@
 {
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "python.linting.pylintArgs": [
+        "--disable=C0111,C0115,C0200,C1801,W0703,W1201,W1203",
+        "--good-names=i,j,k,ex,df,Run,_,pk,x,y,z,e,dt",
+        "--max-line-length=120"
+    ],
 }
