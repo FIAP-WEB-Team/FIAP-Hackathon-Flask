@@ -3,7 +3,7 @@ from flask_mail import Mail
 
 from app_config import set_config
 from services.image_compression import compress_images
-from services.email_gen import EmailInfo, generate_email
+from services.email_gen import EmailInfo, Status, generate_email
 
 app = Flask(__name__)
 
@@ -26,12 +26,17 @@ def process_images():
 @app.route('/email', methods=['POST'])
 def send_email():
     email_info = EmailInfo(
-        request.form.get('email_client'),
-        request.form.get('channel'),
-        request.form.get('type'),
-        request.form.get('status'),
-        request.form.get('description'),
-        request.files.getlist('images')
+        request.json.get('ticket_id'),
+        request.json.get('client_name'),
+        request.json.get('email_client'),
+        request.json.get('channel'),
+        request.json.get('type'),
+        request.json.get('level'),
+        Status[request.json.get('status').upper()],
+        request.json.get('description'),
+        request.json.get('images')
     )
     message = generate_email(email_info)
     mail.send(message)
+    
+    return {}
