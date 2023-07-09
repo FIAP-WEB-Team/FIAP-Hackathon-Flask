@@ -1,12 +1,14 @@
+import os
 import yaml
 from flask import Flask
 
 
-CREDENTIALS_FILE = 'credentials/gmail_secret.yaml'
+CREDENTIALS_FILE = '/credentials/gmail_secret.yaml'
 
 
 def _load_email_config():
-    with open(CREDENTIALS_FILE, 'r', encoding='UTF-8') as file:
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    with open(base_path + CREDENTIALS_FILE, 'r', encoding='UTF-8') as file:
         credentials = yaml.safe_load(file)['default']
     return credentials['username'], credentials['password']
 
