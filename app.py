@@ -13,7 +13,7 @@ mail = Mail(app)
 
 @app.route('/')
 def hello_world():
-    return "<p>Hello World</p>"
+    return "<p>Hello FIAPers</p>"
 
 
 @app.route('/image_processing', methods=['POST'])
