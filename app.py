@@ -34,7 +34,8 @@ def send_email():
         request.json.get('level'),
         Status[request.json.get('status').upper()],
         request.json.get('description'),
-        request.json.get('images')
+        request.json.get('images'),
+        request.json.get('clerk_description')
     )
     message = generate_email(email_info)
     mail.send(message)

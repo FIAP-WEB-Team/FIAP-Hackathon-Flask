@@ -21,6 +21,7 @@ class EmailInfo:
     status: Status
     description: str
     images: list
+    clerk_description: str
 
 
 def generate_email(email: EmailInfo):
@@ -35,6 +36,8 @@ def generate_email(email: EmailInfo):
     footer_info = (f"Informações da reclamação:\n\nCanal de comunicação: {email.channel}\n" +
                    f"Tipo da reclamação: {email.type}\nLevel (quanto maior mais prioritário): " +
                    f"{email.level}\nDescrição: {email.description}")
+    if email.clerk_description:
+        footer_info += f"\nDescrição dos atendentes: {email.clerk_description}"
     title = f"Reclamação nº {email.ticket_id}"
     body = f"{header_info}\n\n{mid_info}\n{footer_info}"
     attachments = None
